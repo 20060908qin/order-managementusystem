@@ -57,8 +57,10 @@ def list_orders():
         FROM orders 
         JOIN customers ON orders.customer_id = customers.id
     ''').fetchall()
+    customers = db.execute('SELECT id, name FROM customers ORDER BY id').fetchall()
+    products = db.execute('SELECT id, name FROM products ORDER BY id').fetchall()
     db.close()
-    return render_template('orders.html', orders=orders)
+    return render_template('orders.html', orders=orders, customers=customers, products=products)
 
 @app.route('/add_order', methods=['POST'])
 def add_order():
