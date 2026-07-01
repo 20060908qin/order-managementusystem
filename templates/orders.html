@@ -18,13 +18,25 @@
     
     <form method="POST" action="/add_order">
         <h3>新增訂單（簡化版，含一筆明細）</h3>
-        顧客編號：<input type="number" name="customer_id" required>
+        顧客：
+        <select name="customer_id" required>
+            <option value="">請選擇顧客</option>
+            {% for c in customers %}
+            <option value="{{ c.id }}">{{ c.id }} - {{ c.name }}</option>
+            {% endfor %}
+        </select>
         下單日期：<input type="date" name="order_date" required>
         交貨日期：<input type="date" name="delivery_date">
         交貨地點：<input type="text" name="delivery_place">
         總金額：<input type="number" name="total_amount" step="0.01" required>
         <hr>
-        產品編號：<input type="number" name="product_id" required>
+        產品：
+        <select name="product_id" required>
+            <option value="">請選擇產品</option>
+            {% for p in products %}
+            <option value="{{ p.id }}">{{ p.id }} - {{ p.name }}</option>
+            {% endfor %}
+        </select>
         數量：<input type="number" name="quantity" required>
         售價：<input type="number" name="price" step="0.01" required>
         <button type="submit">新增訂單</button>
