@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>顧客管理</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        form { margin: 20px 0; padding: 20px; background: #f9f9f9; border-radius: 5px; }
+        input { margin: 5px; padding: 5px; }
+        button { padding: 5px 15px; background: #4CAF50; color: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>👤 顧客管理</h1>
+    <a href="/">← 回首頁</a>
+    
+    <form method="POST" action="/add_customer">
+        <h3>新增顧客</h3>
+        統一編號：<input type="text" name="tax_id" required>
+        名稱：<input type="text" name="name" required>
+        地址：<input type="text" name="address">
+        電話1：<input type="text" name="phone1">
+        電話2：<input type="text" name="phone2">
+        聯絡人：<input type="text" name="contact_person">
+        <button type="submit">新增</button>
+    </form>
+    
+    <table>
+        <tr>
+            <th>編號</th><th>統一編號</th><th>名稱</th><th>地址</th>
+            <th>電話1</th><th>電話2</th><th>聯絡人</th>
+        </tr>
+        {% for c in customers %}
+        <tr>
+            <td>{{ c.id }}</td>
+            <td>{{ c.tax_id }}</td>
+            <td>{{ c.name }}</td>
+            <td>{{ c.address }}</td>
+            <td>{{ c.phone1 }}</td>
+            <td>{{ c.phone2 }}</td>
+            <td>{{ c.contact_person }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
